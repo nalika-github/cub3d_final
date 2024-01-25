@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_invalid.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 11:37:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/25 21:03:40 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	explicit_error(int stage)
 {
 	if (stage != 0)
-		perror(RED"Error\n"RESET);
+		ft_putstr_fd(RED"Error\n"RESET, 2);
 	if (stage == 1)
 		ft_putstr_fd(RED":empty file\n"RESET, 2);
 	else if (stage == 2)
@@ -33,7 +33,7 @@ int	explicit_error(int stage)
 	return (stage);
 }
 
-int	invalid_filepath(char *maps_path, char *path, char *format)
+int	invalid_filepath(char *maps_path, char *format)
 {
 	char	*begin;
 	char	*end;
@@ -45,8 +45,6 @@ int	invalid_filepath(char *maps_path, char *path, char *format)
 	end = maps_path + (len - 4);
 	if (len == 0)
 		return (perror(RED"Error\n: Invalid Argument"RESET), 1);
-	else if (ft_strncmp(begin, path, 5) != 0)
-		return (perror(RED"Error\n: Invalid file path "RESET), 1);
 	else if (ft_strncmp(end, format, 4) != 0)
 		return (perror(RED"Error\n: Invalid file format "RESET), 1);
 	fd = open(maps_path, O_RDONLY);

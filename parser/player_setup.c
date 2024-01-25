@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_setup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 20:09:46 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 17:49:18 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/25 21:30:57 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	begin_dir_of_player(t_main *main, char d)
 	if (d == 'S')
 		rotate(main, 180);
 	else if (d == 'E')
-		rotate(main, 90);
-	else if (d == 'W')
 		rotate(main, -90);
+	else if (d == 'W')
+		rotate(main, 90);
 }

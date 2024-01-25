@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 11:19:47 by pnopjira          #+#    #+#              #
-#    Updated: 2024/01/25 17:22:07 by marvin           ###   ########.fr        #
+#    Updated: 2024/01/25 20:59:42 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,17 +47,17 @@ OBJS_MAIN				=	$(MAIN:%.c=$(BUILD_DIR)/%.o)
 
 # Variable declaration of linking lib
 
-OPENDIR					=	-I./libft -I$(INCS_DIR) -L./libft -Lmlx_linux -L/usr/lib
-LIBLINK					=	-lft -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
+# OPENDIR					=	-I./libft -I$(INCS_DIR) -L./libft -Lmlx_linux -L/usr/lib
+# LIBLINK					=	-lft -lmlx_Linux -Imlx_linux -lXext -lX11 -lm -lz
 
 # Conditional compilation for macOS
 
-ifdef __APPLE__
+#ifdef __APPLE__
 OPENDIR					+=	-framework OpenGL -framework AppKit
 HDFS					+=	$(INCS_DIR)/macos_additional_headers.h
 OPENDIR					=	-I./libft -I$(INCS_DIR) -L./libft -Imlx -Lmlx
 LIBLINK					=	-lft -lmlx -framework OpenGL -framework AppKit
-endif
+#endif
 
 # Build step
 

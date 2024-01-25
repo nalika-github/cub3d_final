@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_wall.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 10:48:47 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/25 11:37:47 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/25 21:29:10 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,16 @@ t_imgdata	*get_texture(t_ray *ray, t_vp *vp)
 	if (ray->wall_hit_side == 0)
 	{
 		if (ray->raydir.x > 0)
-			return (&vp->tex_ea_img);
-		else
 			return (&vp->tex_we_img);
+		else
+			return (&vp->tex_ea_img);
 	}
 	else if (ray->wall_hit_side == 1)
 	{
 		if (ray->raydir.y > 0)
-			return (&vp->tex_so_img);
-		else
 			return (&vp->tex_no_img);
+		else
+			return (&vp->tex_so_img);
 	}
 	return (NULL);
 }

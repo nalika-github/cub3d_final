@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animate_loop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:56:36 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/25 19:13:44 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/25 21:16:01 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	calculate_movement(t_main *ms)
 int	press_event(int key, t_main *ms)
 {
 	if (key == KEY_ESC)
-		cub3d_exit(ms);
+		x_exit(ms);
 	if (key == KEY_RIGHT)
 		ms->event.turn_r = 1;
 	if (key == KEY_LEFT)
