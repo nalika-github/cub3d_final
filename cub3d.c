@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 21:18:04 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/26 11:00:28 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	raycaster_loop(t_main *main)
 	rotate(main, 0.1);
 	mlx_hook(vars->win, EVENT_PRESS, 1L << 0, press_event, main);
 	mlx_hook(vars->win, EVENT_RELEASE, 1L << 1, release_event, main);
-	mlx_hook(vars->win, 17, 0, x_exit, main);
+	mlx_hook(vars->win, EVENT_DESTRORY, 0, x_exit, main);
 	mlx_loop_hook(vars->mlx, &animate_loop, main);
 	mlx_loop(vars->mlx);
 	return (0);
