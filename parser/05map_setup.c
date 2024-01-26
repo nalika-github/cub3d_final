@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05map_setup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:49:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 17:42:44 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 12:59:35 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	setup_pos_mapx(char **mapdata, int j, t_map *map, t_player *p)
 		|| mapdata[j][x] == 'W' || mapdata[j][x] == 'E')
 		{
 			if (setup_pos(&mapdata[j][x], x, j, p))
-				return (5);
+				return (8);
 		}
 		else if (!(mapdata[j][x] == '0' || mapdata[j][x] == '1' \
 		|| mapdata[j][x] == ' '))

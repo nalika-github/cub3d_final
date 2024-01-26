@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 20:09:46 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 21:30:57 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/26 13:28:11 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ void	begin_dir_of_player(t_main *main, char d)
 	dir = main->viewport->scene->p->dir;
 	right_dir = main->viewport->scene->p->right_dir;
 	cam_plane = main->viewport->scene->p->cam_plane;
-	dir->x = 0;
-	dir->y = -1;
-	right_dir->x = -1;
-	right_dir->y = 0;
-	cam_plane->x = 0.66;
-	cam_plane->y = 0;
 	main->player = main->viewport->scene->p;
 	if (d == 'S')
 		rotate(main, 180);
