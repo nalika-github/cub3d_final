@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/11 05:59:07 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 21:02:50 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/27 06:35:48 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,20 +23,21 @@ int	init_content(t_list *iden, char **dst, char **src, char *key)
 	!ft_strncmp(key, "WE", 2) || !ft_strncmp(key, "EA", 2))
 	{
 		if (invalid_filepath(*dst, ".xpm"))
-			return (free(*src), *src = NULL, EXIT_FAILURE);
+			return (free(*src), free(*dst), 3);
 	}
 	else if (!ft_strncmp(key, "F", 1) || !ft_strncmp(key, "C", 1))
 	{
 		if (invalid_color_code(*dst))
-			return (free(*src), *src = NULL, EXIT_FAILURE);
+			return (free(*src), free(*dst), 6);
 	}
-	key_to_content(iden, key, *dst);
+	if (key_to_content(iden, key, *dst))
+		return (free(*src), 4);
 	free(*src);
 	src = NULL;
 	return (EXIT_SUCCESS);
 }
 
-int	ck_no_so_we_ea(char *tmp, t_list *iden)
+void	ck_no_so_we_ea(int *err, char *tmp, t_list *iden)
 {
 	char	*str1;
 	char	*str2;
@@ -44,22 +45,18 @@ int	ck_no_so_we_ea(char *tmp, t_list *iden)
 	str1 = NULL;
 	str2 = (char *) malloc(sizeof(char) * ft_strlen(tmp));
 	ft_strlcpy(str2, tmp, ft_strlen(tmp) - 1);
-	if (ft_strncmp(str2, "NO ", 3) == 0)
-		if (init_content(iden, &str1, &str2, "NO"))
-			return (free(str1), 3);
-	if (ft_strncmp(str2, "SO ", 3) == 0)
-		if (init_content(iden, &str1, &str2, "SO"))
-			return (free(str1), 3);
-	if (ft_strncmp(str2, "WE ", 3) == 0)
-		if (init_content(iden, &str1, &str2, "WE"))
-			return (free(str1), 3);
-	if (ft_strncmp(str2, "EA ", 3) == 0)
-		if (init_content(iden, &str1, &str2, "EA"))
-			return (free(str1), 3);
-	return (EXIT_SUCCESS);
+	if (ft_strncmp(str2, "NO", 2) == 0)
+		*err = init_content(iden, &str1, &str2, "NO");
+	else if (ft_strncmp(str2, "SO", 2) == 0)
+		*err = init_content(iden, &str1, &str2, "SO");
+	else if (ft_strncmp(str2, "WE", 2) == 0)
+		*err = init_content(iden, &str1, &str2, "WE");
+	else if (ft_strncmp(str2, "EA", 2) == 0)
+		*err = init_content(iden, &str1, &str2, "EA");
+	return ;
 }
 
-int	ck_f_c_color(char *tmp, t_list *iden)
+void	ck_f_c_color(int *err, char *tmp, t_list *iden)
 {
 	char	*str1;
 	char	*str2;
@@ -67,33 +64,34 @@ int	ck_f_c_color(char *tmp, t_list *iden)
 	str1 = NULL;
 	str2 = (char *)malloc(sizeof(char) * ft_strlen(tmp));
 	ft_strlcpy(str2, tmp, ft_strlen(tmp) - 1);
-	if (ft_strncmp(str2, "F ", 2) == 0)
-		if (init_content(iden, &str1, &str2, "F"))
-			return (free(str1), 6);
-	if (ft_strncmp(str2, "C ", 2) == 0)
-		if (init_content(iden, &str1, &str2, "C"))
-			return (free(str1), 6);
-	return (EXIT_SUCCESS);
+	if (ft_strncmp(str2, "F", 1) == 0)
+		*err = init_content(iden, &str1, &str2, "F");
+	if (ft_strncmp(str2, "C", 1) == 0)
+		*err = init_content(iden, &str1, &str2, "C");
+	return ;
 }
 
 void	ck_data_format(char *tmp, int *err, t_map *map)
 {
 	if (tmp[0] == '\n' && tmp[1] == '\0')
+		err_msg(map->map_begin, err, 'n');
+	else if ((!ft_strncmp(tmp, "NO ", 3) || !ft_strncmp(tmp, "SO ", 3) \
+	|| !ft_strncmp(tmp, "WE ", 3) || !ft_strncmp(tmp, "EA ", 3)) \
+	&& map->map_begin == 0)
+		ck_no_so_we_ea(err, tmp, map->iden);
+	else if ((!ft_strncmp(tmp, "F ", 2) || !ft_strncmp(tmp, "C ", 2)) \
+	&& map->map_begin == 0)
+		ck_f_c_color(err, tmp, map->iden);
+	else if (tmp[0] == ' ' || tmp[0] == '1' || tmp[0] == '0' || \
+	(tmp[0] == 'N' && tmp[1] != 'O') || (tmp[0] == 'S' && tmp[1] != 'O') \
+	|| (tmp[0] == 'W' && tmp[1] != 'E') || (tmp[0] == 'E' && tmp[1] != 'A'))
 	{
-		if (map->map_begin == 1)
-			*err = 5;
-		else
-			*err = 0;
-	}
-	else if (!ft_strncmp(tmp, "NO ", 3) || !ft_strncmp(tmp, "SO ", 3) \
-	|| !ft_strncmp(tmp, "WE ", 3) || !ft_strncmp(tmp, "EA ", 3))
-		*err = ck_no_so_we_ea(tmp, map->iden);
-	else if (!ft_strncmp(tmp, "F ", 2) || !ft_strncmp(tmp, "C ", 2))
-		*err = ck_f_c_color(tmp, map->iden);
-	else if (ft_strncmp(tmp, "1", 1) == 0 || ft_strncmp(tmp, "0", 1) == 0)
 		*err = ck_map_info(map);
+		if (tmp[0] == 'N' || tmp[0] == 'S' || tmp[0] == 'W' || tmp[0] == 'E')
+			*err = 7;
+	}
 	else
-		*err = -1;
+		err_msg(map->map_begin, err, 'c');
 }
 
 void	ck_invalid_iden(int *err, int fd1, t_map *map)

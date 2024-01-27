@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/26 13:30:49 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:56:15 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ typedef struct s_map
 	char	**map_original;
 	int		mapx;
 	int		mapy;
-	int 	mapsize;
+	int		mapsize;
 	int		**map;
 }	t_map;
 
@@ -99,7 +99,7 @@ typedef struct s_viewport
 	t_imgdata	tex_no_img;
 	t_imgdata	tex_we_img;
 	t_imgdata	tex_ea_img;
-	t_frame 	*scene;
+	t_frame		*scene;
 }	t_vp;
 
 typedef struct s_even
@@ -114,7 +114,7 @@ typedef struct s_even
 
 typedef struct s_main
 {
-	t_vp 			*viewport;
+	t_vp			*viewport;
 	t_map			*filemap;
 	t_player		*player;
 	t_ray			*ray;

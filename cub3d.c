@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/26 13:44:21 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/26 23:53:51 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 	init_main_struct(&main_struc);
 	if (argc != 2)
-		return (perror(GREEN"USED: ./cud3d maps/<filename>.cub"RESET), \
+		return (ft_putstr_fd(GREEN"USED: ./cud3d ./<filename>.cub"RESET, 2), \
 		EXIT_FAILURE);
 	if (is_invalid_input(argv[1], &main_struc))
 		return (cub3d_exit(&main_struc), EXIT_FAILURE);

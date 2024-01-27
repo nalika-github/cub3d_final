@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 21:09:24 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/27 09:59:52 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,6 @@
 # define RED "\033[0;31m"
 # define RESET "\033[0m"
 
-
-// #ifdef __APPLE__
-// Define keys for macOS
 # define KEY_DOWN 125
 # define KEY_UP 126
 # define KEY_A 0
@@ -43,7 +40,6 @@
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
 # define KEY_ESC 53
-// #endif
 
 # define EVENT_PRESS 02
 # define EVENT_RELEASE 03
@@ -97,7 +93,7 @@ void			before_map_line(int fd2, int map_begin, char **line);
 void			ck_invalid_map(int *err, int fd2, t_map *map, t_player *p);
 void			print_map_original(char **map_original);
 int				mapsize(t_map *m, t_player *p);
-void			key_to_content(t_list *iden, char *key, char *content);
+int				key_to_content(t_list *iden, char *key, char *content);
 
 //03map_setup
 int				set_vp(t_main *main);
@@ -115,10 +111,11 @@ void			ck_closed_walls(int *err, t_map *map, t_player *p);
 int				setup_pos_mapx(char **mapdata, int j, t_map *map, t_player *p);
 int				set_main_struct(t_main	*main);
 void			get_textures_path(t_main *main);
+int				err_msg(bool map_begin, int *err, char type);
 //check_dataformat
 int				init_content(t_list *iden, char **dst, char **src, char *key);
-int				ck_no_so_we_ea(char *tmp, t_list *iden);
-int				ck_f_c_color(char *tmp, t_list *iden);
+void			ck_no_so_we_ea(int *err, char *tmp, t_list *iden);
+void			ck_f_c_color(int *err, char *tmp, t_list *iden);
 void			ck_data_format(char *tmp, int *err, t_map *map);
 void			ck_invalid_iden(int *err, int fd1, t_map *map);
 //check_invalid
@@ -196,6 +193,8 @@ void			cal_ray_projection_dist_n_wall_hight(t_ray *ray);
 
 void			move_l(t_main *ms);
 void			move_r(t_main *ms);
+int				check_before_move(t_player *p, t_main *ms, \
+int m_map_x, int m_map_y);
 void			move_f(t_main *ms);
 void			move_b(t_main *ms);
 

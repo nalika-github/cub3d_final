@@ -6,12 +6,11 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:42:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 21:16:15 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/26 20:11:20 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	free_player(t_player *p)
 {
@@ -62,7 +61,7 @@ int	cub3d_exit(t_main *main_struc)
 	return (0);
 }
 
-int x_exit(t_main *main_struct)
+int	x_exit(t_main *main_struct)
 {
 	cub3d_exit(main_struct);
 	ft_putstr_fd(RED"Exit\n"RESET, 1);

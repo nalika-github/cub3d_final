@@ -6,11 +6,11 @@
 #    By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/28 11:19:47 by pnopjira          #+#    #+#              #
-#    Updated: 2024/01/25 20:59:42 by pnopjira         ###   ########.fr        #
+#    Updated: 2024/01/27 10:05:42 by pnopjira         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME					= 	cub3d
+NAME					= 	cub3D
 HDF						=	cub3d.h game_setup.h get_next_line.h
 LIBFT					=	libft/libft.a
 CC						=	gcc
@@ -52,12 +52,9 @@ OBJS_MAIN				=	$(MAIN:%.c=$(BUILD_DIR)/%.o)
 
 # Conditional compilation for macOS
 
-#ifdef __APPLE__
 OPENDIR					+=	-framework OpenGL -framework AppKit
-HDFS					+=	$(INCS_DIR)/macos_additional_headers.h
 OPENDIR					=	-I./libft -I$(INCS_DIR) -L./libft -Imlx -Lmlx
 LIBLINK					=	-lft -lmlx -framework OpenGL -framework AppKit
-#endif
 
 # Build step
 

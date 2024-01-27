@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:49:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/26 12:59:35 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/27 06:42:14 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,18 @@ void	get_textures_path(t_main *main)
 		else if (ft_strncmp(ptr->key, "EA", 1) == 0)
 			main->tex_ea = ptr->content;
 		ptr = ptr->next;
+	}
+}
+
+int	err_msg(bool map_begin, int *err, char type)
+{
+	if (map_begin == true)
+		*err = 5;
+	else
+	{
+		if (type == 'n')
+			*err = 0;
+		else if (type == 'c')
+			*err = 9;
 	}
 }

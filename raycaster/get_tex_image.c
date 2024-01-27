@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycaster.c                                        :+:      :+:    :+:   */
+/*   get_tex_image.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 15:05:52 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 11:38:01 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/27 09:50:08 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ t_imgdata	get_tex_image(t_vp *vp, char *path, int *w, int *h)
 	teximg.img = mlx_xpm_file_to_image(vp->mlx, path, w, h);
 	if (teximg.img == NULL)
 	{
-		printf("image path: %s not found\n", path);
+		ft_putstr_fd(RED"Error\n"RESET, 2);
+		ft_putstr_fd(RED"image path: %s not found\n"RESET, 2);
 		return (teximg);
 	}
 	teximg.addr = mlx_get_data_addr(teximg.img, &teximg.bpp, \

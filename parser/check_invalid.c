@@ -6,7 +6,7 @@
 /*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/26 14:01:32 by pnopjira         ###   ########.fr       */
+/*   Updated: 2024/01/27 06:42:27 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,27 @@
 
 int	explicit_error(int stage)
 {
-	if (stage != 0)
-		ft_putstr_fd(RED"Error\n"RESET, 2);
 	if (stage == 1)
-		ft_putstr_fd(RED":empty file.\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:empty file.\n"RESET, 2);
 	else if (stage == 2)
-		ft_putstr_fd(RED":the type identity wasn't found.\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:the type identifier, NO SO WE EA F or C, \
+can not found.\n"RESET, 2);
 	else if (stage == 3)
-		ft_putstr_fd(RED":the texture's filepath is invalid.\n"RESET, 2);
+		ft_putstr_fd(RED": the texture's filepath is invalid.\n"RESET, 2);
 	else if (stage == 4)
-		ft_putstr_fd(RED":the map is too big or too small.\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n: double keys\n"RESET, 2);
 	else if (stage == 5)
-		ft_putstr_fd(RED":the map is invalid.\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:the map content is invalid.\n"RESET, 2);
 	else if (stage == 6)
-		ft_putstr_fd(RED":color code is invalid.\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:color code is invalid.\n"RESET, 2);
 	else if (stage == 7)
-		ft_putstr_fd(RED":The map must be surrounded by walls.\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:The map must be surrounded by \
+walls.\n"RESET, 2);
 	else if (stage == 8)
-		ft_putstr_fd(RED":the player’s spawning must be onece.\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:the player’s spawning must be \
+onece.\n"RESET, 2);
+	else if (stage == 9)
+		ft_putstr_fd(RED"Error\n:unknown key.\n"RESET, 2);
 	return (stage);
 }
 
