@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   02map_setup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/29 19:31:56 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 11:36:53 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/27 09:51:14 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,11 @@ void	print_map_original(char **map_original)
 
 	show_map = map_original;
 	while (*show_map)
-		printf("%s\n", *(show_map++));
+	{
+		ft_putstr_fd(*show_map, 1);
+		ft_putchar_fd('\n', 1);
+		show_map++;
+	}
 }
 
 int	mapsize(t_map *m, t_player *p)
@@ -84,7 +88,7 @@ int	mapsize(t_map *m, t_player *p)
 	return (EXIT_SUCCESS);
 }
 
-void	key_to_content(t_list *iden, char *key, char *content)
+int	key_to_content(t_list *iden, char *key, char *content)
 {
 	t_list	*tmp;
 
@@ -93,12 +97,17 @@ void	key_to_content(t_list *iden, char *key, char *content)
 	{
 		if (ft_strncmp(tmp->key, key, ft_strlen(key)) == 0)
 		{
-			if (tmp->content)
-				free(tmp->content);
+			if (ft_strncmp(tmp->content, "", 1) != 0)
+			{
+				free(content);
+				return (EXIT_FAILURE);
+			}
+			free(tmp->content);
 			tmp->content = ft_strdup(content);
 			free(content);
-			return ;
+			return (EXIT_SUCCESS);
 		}
 		tmp = tmp->next;
 	}
+	return (EXIT_SUCCESS);
 }

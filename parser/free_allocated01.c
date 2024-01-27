@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   free_allocated01.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/12 18:42:34 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 17:52:24 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 20:11:20 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
 
 void	free_player(t_player *p)
 {
@@ -60,4 +59,11 @@ int	cub3d_exit(t_main *main_struc)
 	if (main_struc->ray)
 		free(main_struc->ray);
 	return (0);
+}
+
+int	x_exit(t_main *main_struct)
+{
+	cub3d_exit(main_struct);
+	ft_putstr_fd(RED"Exit\n"RESET, 1);
+	exit(0);
 }

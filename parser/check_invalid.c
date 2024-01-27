@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_invalid.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 06:00:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 11:37:12 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/27 06:42:27 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,31 @@
 
 int	explicit_error(int stage)
 {
-	if (stage != 0)
-		perror(RED"Error\n"RESET);
 	if (stage == 1)
-		ft_putstr_fd(RED":empty file\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:empty file.\n"RESET, 2);
 	else if (stage == 2)
-		ft_putstr_fd(RED":the type identity is invalid or lost\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:the type identifier, NO SO WE EA F or C, \
+can not found.\n"RESET, 2);
 	else if (stage == 3)
-		ft_putstr_fd(RED":type identity's file path is invalid\n"RESET, 2);
+		ft_putstr_fd(RED": the texture's filepath is invalid.\n"RESET, 2);
 	else if (stage == 4)
-		ft_putstr_fd(RED":the map is too big or too small\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n: double keys\n"RESET, 2);
 	else if (stage == 5)
-		ft_putstr_fd(RED":the map is invalid\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:the map content is invalid.\n"RESET, 2);
 	else if (stage == 6)
-		ft_putstr_fd(RED":color code is invalid\n"RESET, 2);
-	else if (stage != 0)
-		ft_putstr_fd(RED":unindentify\n"RESET, 2);
+		ft_putstr_fd(RED"Error\n:color code is invalid.\n"RESET, 2);
+	else if (stage == 7)
+		ft_putstr_fd(RED"Error\n:The map must be surrounded by \
+walls.\n"RESET, 2);
+	else if (stage == 8)
+		ft_putstr_fd(RED"Error\n:the player’s spawning must be \
+onece.\n"RESET, 2);
+	else if (stage == 9)
+		ft_putstr_fd(RED"Error\n:unknown key.\n"RESET, 2);
 	return (stage);
 }
 
-int	invalid_filepath(char *maps_path, char *path, char *format)
+int	invalid_filepath(char *maps_path, char *format)
 {
 	char	*begin;
 	char	*end;
@@ -44,14 +49,12 @@ int	invalid_filepath(char *maps_path, char *path, char *format)
 	len = ft_strlen(maps_path);
 	end = maps_path + (len - 4);
 	if (len == 0)
-		return (perror(RED"Error\n: Invalid Argument"RESET), 1);
-	else if (ft_strncmp(begin, path, 5) != 0)
-		return (perror(RED"Error\n: Invalid file path "RESET), 1);
+		return (ft_putstr_fd(RED"Error\n: Invalid Argument\n"RESET, 2), 1);
 	else if (ft_strncmp(end, format, 4) != 0)
-		return (perror(RED"Error\n: Invalid file format "RESET), 1);
+		return (ft_putstr_fd(RED"Error\n: Invalid file format\n"RESET, 2), 1);
 	fd = open(maps_path, O_RDONLY);
 	if (fd == -1)
-		return (perror(RED"Error\n: Invalid file name "RESET), 1);
+		return (ft_putstr_fd(RED"Error\n: Invalid file name\n"RESET, 2), 1);
 	else
 		close(fd);
 	return (0);

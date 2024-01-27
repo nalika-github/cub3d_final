@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 15:26:37 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 19:20:22 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 23:53:51 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	check_invalid_filedata(char *maps_path, t_map *map, t_player *p)
 {
-	if (invalid_filepath(maps_path, "maps/", ".cub"))
-		return (ft_putstr_fd(GREEN"Used: maps/<filename>.cub\n"RESET, 2), \
-		EXIT_FAILURE);
+	if (invalid_filepath(maps_path, ".cub"))
+		return (EXIT_FAILURE);
 	if (explicit_error(rd_mapdata(maps_path, map, p)))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
@@ -28,10 +27,10 @@ int	raycaster_loop(t_main *main)
 
 	vars = (*main).viewport;
 	init_ray(main);
-	cub3d_render(main, main->viewport);
-	rotate(main, 1);
+	rotate(main, 0.1);
 	mlx_hook(vars->win, EVENT_PRESS, 1L << 0, press_event, main);
 	mlx_hook(vars->win, EVENT_RELEASE, 1L << 1, release_event, main);
+	mlx_hook(vars->win, EVENT_DESTRORY, 0, x_exit, main);
 	mlx_loop_hook(vars->mlx, &animate_loop, main);
 	mlx_loop(vars->mlx);
 	return (0);
@@ -44,7 +43,7 @@ int	main(int argc, char **argv)
 	(void)argv;
 	init_main_struct(&main_struc);
 	if (argc != 2)
-		return (perror(GREEN"USED: ./cud3d maps/<filename>.cub"RESET), \
+		return (ft_putstr_fd(GREEN"USED: ./cud3d ./<filename>.cub"RESET, 2), \
 		EXIT_FAILURE);
 	if (is_invalid_input(argv[1], &main_struc))
 		return (cub3d_exit(&main_struc), EXIT_FAILURE);

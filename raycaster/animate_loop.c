@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   animate_loop.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/25 13:56:36 by ptungbun          #+#    #+#             */
-/*   Updated: 2024/01/25 19:13:44 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/27 08:03:12 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,24 +52,24 @@ void	re_calculate_ray(t_main *ms)
 
 void	calculate_movement(t_main *ms)
 {
-	if(ms->event.turn_r == 1)
+	if (ms->event.turn_r == 1)
 		rotate(ms, -1 * TURN_SPEED);
-	if(ms->event.turn_l == 1)
+	if (ms->event.turn_l == 1)
 		rotate(ms, TURN_SPEED);
-	if(ms->event.move_l == 1)
+	if (ms->event.move_l == 1)
 		move_l(ms);
-	if(ms->event.move_r == 1)
+	if (ms->event.move_r == 1)
 		move_r(ms);
-	if(ms->event.move_f == 1)
+	if (ms->event.move_f == 1)
 		move_f(ms);
-	if(ms->event.move_b == 1)
+	if (ms->event.move_b == 1)
 		move_b(ms);
 }
 
 int	press_event(int key, t_main *ms)
 {
 	if (key == KEY_ESC)
-		cub3d_exit(ms);
+		x_exit(ms);
 	if (key == KEY_RIGHT)
 		ms->event.turn_r = 1;
 	if (key == KEY_LEFT)
@@ -101,4 +101,3 @@ int	release_event(int key, t_main *ms)
 		ms->event.move_b = 0;
 	return (0);
 }
-

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_setup.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/16 20:09:46 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 17:49:18 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 13:28:11 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,17 +32,11 @@ void	begin_dir_of_player(t_main *main, char d)
 	dir = main->viewport->scene->p->dir;
 	right_dir = main->viewport->scene->p->right_dir;
 	cam_plane = main->viewport->scene->p->cam_plane;
-	dir->x = 0;
-	dir->y = -1;
-	right_dir->x = -1;
-	right_dir->y = 0;
-	cam_plane->x = 0.66;
-	cam_plane->y = 0;
 	main->player = main->viewport->scene->p;
 	if (d == 'S')
 		rotate(main, 180);
 	else if (d == 'E')
-		rotate(main, 90);
-	else if (d == 'W')
 		rotate(main, -90);
+	else if (d == 'W')
+		rotate(main, 90);
 }

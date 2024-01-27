@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/12 19:09:08 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 19:17:59 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/27 09:59:52 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,35 +30,31 @@
 # define RED "\033[0;31m"
 # define RESET "\033[0m"
 
-
-// #ifdef __APPLE__
-// // Define keys for macOS
-// # define KEY_DOWN 125
-// # define KEY_UP 126
-// # define KEY_A 0
-// # define KEY_S 1
-// # define KEY_D 2
-// # define KEY_W 13
-// # define KEY_M 14
-// # define KEY_LEFT 123
-// # define KEY_RIGHT 124
-// # define KEY_ESC 53
-// #endif
+# define KEY_DOWN 125
+# define KEY_UP 126
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
+# define KEY_W 13
+# define KEY_M 14
+# define KEY_LEFT 123
+# define KEY_RIGHT 124
+# define KEY_ESC 53
 
 # define EVENT_PRESS 02
 # define EVENT_RELEASE 03
 # define EVENT_DESTRORY 17
 
-# define KEY_W 119
-# define KEY_A 97
-# define KEY_S 115
-# define KEY_D 100
-# define KEY_M 109
-# define KEY_DOWN 125
-# define KEY_UP 126
-# define KEY_LEFT 65361
-# define KEY_RIGHT 65363
-# define KEY_ESC 65307
+// # define KEY_W 119
+// # define KEY_A 97
+// # define KEY_S 115
+// # define KEY_D 100
+// # define KEY_M 109
+// # define KEY_DOWN 125
+// # define KEY_UP 126
+// # define KEY_LEFT 65361
+// # define KEY_RIGHT 65363
+// # define KEY_ESC 65307
 
 # define WINDOW_WIDTH 1440
 # define WINDOW_HEIGHT 832
@@ -97,7 +93,7 @@ void			before_map_line(int fd2, int map_begin, char **line);
 void			ck_invalid_map(int *err, int fd2, t_map *map, t_player *p);
 void			print_map_original(char **map_original);
 int				mapsize(t_map *m, t_player *p);
-void			key_to_content(t_list *iden, char *key, char *content);
+int				key_to_content(t_list *iden, char *key, char *content);
 
 //03map_setup
 int				set_vp(t_main *main);
@@ -115,16 +111,17 @@ void			ck_closed_walls(int *err, t_map *map, t_player *p);
 int				setup_pos_mapx(char **mapdata, int j, t_map *map, t_player *p);
 int				set_main_struct(t_main	*main);
 void			get_textures_path(t_main *main);
+int				err_msg(bool map_begin, int *err, char type);
 //check_dataformat
 int				init_content(t_list *iden, char **dst, char **src, char *key);
-int				ck_no_so_we_ea(char *tmp, t_list *iden);
-int				ck_f_c_color(char *tmp, t_list *iden);
+void			ck_no_so_we_ea(int *err, char *tmp, t_list *iden);
+void			ck_f_c_color(int *err, char *tmp, t_list *iden);
 void			ck_data_format(char *tmp, int *err, t_map *map);
 void			ck_invalid_iden(int *err, int fd1, t_map *map);
 //check_invalid
 
 int				explicit_error(int stage);
-int				invalid_filepath(char *maps_path, char *path, char *format);
+int				invalid_filepath(char *maps_path, char *format);
 int				invalid_color_code(char *rgb);
 int				ck_identify(int *err, t_list *iden);
 int				before_map(t_map *map, int *err);
@@ -141,6 +138,7 @@ int				color3f(int r, int g, int b);
 void			free_player(t_player *p);
 void			free_scene(t_frame *scene);
 int				cub3d_exit(t_main *main_struc);
+int				x_exit(t_main *set_main_struct);
 
 //free_allocated02
 
@@ -195,6 +193,8 @@ void			cal_ray_projection_dist_n_wall_hight(t_ray *ray);
 
 void			move_l(t_main *ms);
 void			move_r(t_main *ms);
+int				check_before_move(t_player *p, t_main *ms, \
+int m_map_x, int m_map_y);
 void			move_f(t_main *ms);
 void			move_b(t_main *ms);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game_setup.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 15:31:21 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 17:25:06 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 23:56:15 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ typedef struct s_color
 	unsigned int	b;
 }	t_color;
 
-typedef struct s_coor //coordinate
+typedef struct s_coor
 {
 	double	x;
 	double	y;
@@ -57,13 +57,13 @@ typedef struct s_imgdata
 typedef struct s_map
 {
 	t_list	*iden;
-	bool	map_begin;
 	bool	close_map;
+	bool	map_begin;
 	int		line_map_begin;
 	char	**map_original;
 	int		mapx;
 	int		mapy;
-	int 	mapsize;
+	int		mapsize;
 	int		**map;
 }	t_map;
 
@@ -95,12 +95,11 @@ typedef struct s_viewport
 	void		*mlx;
 	void		*win;
 	t_imgdata	*bgimg;
-	t_imgdata	*mini_img;
 	t_imgdata	tex_so_img;
 	t_imgdata	tex_no_img;
 	t_imgdata	tex_we_img;
 	t_imgdata	tex_ea_img;
-	t_frame 	*scene;
+	t_frame		*scene;
 }	t_vp;
 
 typedef struct s_even
@@ -115,7 +114,7 @@ typedef struct s_even
 
 typedef struct s_main
 {
-	t_vp 			*viewport;
+	t_vp			*viewport;
 	t_map			*filemap;
 	t_player		*player;
 	t_ray			*ray;
@@ -124,9 +123,9 @@ typedef struct s_main
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
 	char			*tex_so;
+	char			*tex_no;
 	char			*tex_we;
 	char			*tex_ea;
-	char			*tex_no;
 	bool			one_player;
 	int				tex_width;
 	int				tex_hight;

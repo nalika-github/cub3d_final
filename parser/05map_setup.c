@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   05map_setup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 15:49:23 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 17:42:44 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/27 06:42:14 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	setup_pos_mapx(char **mapdata, int j, t_map *map, t_player *p)
 		|| mapdata[j][x] == 'W' || mapdata[j][x] == 'E')
 		{
 			if (setup_pos(&mapdata[j][x], x, j, p))
-				return (5);
+				return (8);
 		}
 		else if (!(mapdata[j][x] == '0' || mapdata[j][x] == '1' \
 		|| mapdata[j][x] == ' '))
@@ -74,5 +74,18 @@ void	get_textures_path(t_main *main)
 		else if (ft_strncmp(ptr->key, "EA", 1) == 0)
 			main->tex_ea = ptr->content;
 		ptr = ptr->next;
+	}
+}
+
+int	err_msg(bool map_begin, int *err, char type)
+{
+	if (map_begin == true)
+		*err = 5;
+	else
+	{
+		if (type == 'n')
+			*err = 0;
+		else if (type == 'c')
+			*err = 9;
 	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   04map_setup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/21 10:26:31 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 11:37:00 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 13:35:08 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	ck_closed_walls(int *err, t_map *map, t_player *p)
 	y = p->map_y;
 	if (x == -1 || y == -1)
 	{
-		*err = 5;
+		*err = 8;
 		return ;
 	}
 	if (!allocated_map_int(&tap, map->mapy, map->mapx))
@@ -99,5 +99,5 @@ void	ck_closed_walls(int *err, t_map *map, t_player *p)
 	flood_fill(map, tap, y, x);
 	free_int_map(tap, map->mapy);
 	if (!map->close_map)
-		*err = 5;
+		*err = 7;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   00map_setup.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: pnopjira <65420071@kmitl.ac.th>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/25 13:37:51 by pnopjira          #+#    #+#             */
-/*   Updated: 2024/01/25 17:51:55 by marvin           ###   ########.fr       */
+/*   Updated: 2024/01/26 22:13:37 by pnopjira         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,8 @@ void	iden_list(t_list **iden)
 void	init_plan(t_map *plan)
 {
 	plan->iden = NULL;
-	plan->map_begin = false;
 	plan->close_map = true;
+	plan->map_begin = false;
 	plan->line_map_begin = 0;
 	plan->map_original = NULL;
 	plan->mapx = 0;
@@ -66,8 +66,12 @@ void	init_player(t_player *player)
 		return ;
 	player->map_x = -1;
 	player->map_y = -1;
+	player->pos->x = -0.5;
+	player->pos->y = -0.5;
 	player->dir->x = 0;
-	player->dir->y = 1;
+	player->dir->y = -1;
+	player->right_dir->x = -1;
+	player->right_dir->y = 0;
 	player->cam_plane->x = 0.66;
 	player->cam_plane->y = 0;
 	player->one_player = false;
@@ -86,10 +90,11 @@ void	init_scene(t_frame *scene)
 	scene->p->dir = (t_coor *)malloc(sizeof(t_coor) * 1);
 	scene->p->right_dir = (t_coor *)malloc(sizeof(t_coor) * 1);
 	scene->p->cam_plane = (t_coor *)malloc(sizeof(t_coor) * 1);
-	if (scene->map == NULL || scene->p == NULL)
+	if (scene->map == NULL || scene->p == NULL || scene->p->pos == NULL \
+	|| scene->p->dir == NULL || scene->p->right_dir == NULL)
 		return ;
-	init_plan(scene->map);
 	init_player(scene->p);
+	init_plan(scene->map);
 	iden_list(&tmp);
 	scene->map->iden = tmp;
 }
